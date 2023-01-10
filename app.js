@@ -66,6 +66,8 @@ app.listen(3000, function(){
     console.log("Server is running on port 3000.");
 });
 
+// these need to go into secrets; exposed now
+
 //mailchimp API: 0310073adc5ec8a8ce3f0323bb38cffa-us10
 
 //audience ID: 64a561a190
