@@ -1,15 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
+const path = require('path');
 const https = require('https');
+const dotenv = require('dotenv');
+dotenv.config();
 
 app = express();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 // What should happen when client tries to GET data FROM our server
+
+const dirname = path.resolve(__dirname, '..');
 app.get("/", function(req, res){
-    res.sendFile(__dirname + "/signup.html");
+    res.sendFile(dirname + "/signup.html");
 });
 
 // What should happen when client tries to POST data TO our server
@@ -34,18 +39,18 @@ app.post("/", function(req, res){
     var jsonData = JSON.stringify(data);
 
     const url = 'https://us10.api.mailchimp.com/3.0/lists/64a561a190';
-
+    const api_key = process.env.API_KEY;
     const options = {
         method: "POST",
-        auth: "reuben:0310073adc5ec8a8ce3f0323bb38cffa-us10"
+        auth: "reuben:" + api_key
     };
     
     const request = https.request(url, options, function(response){
 
         if (response.statusCode === 200) {
-            res.sendFile(__dirname + "/success.html");
+            res.sendFile(dirname + "/success.html");
         } else {
-            res.sendFile(__dirname + "/failure.html");
+            res.sendFile(dirname + "/failure.html");
         }
         response.on("data", function(data){
             console.log(JSON.parse(data));
