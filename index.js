@@ -12,7 +12,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // What should happen when client tries to GET data FROM our server
 
-const dirname = path.resolve(__dirname, '..');
+// const dirname = path.resolve(__dirname, '..');
+const dirname = __dirname
 app.get("/", function(req, res){
     res.sendFile(dirname + "/signup.html");
 });
