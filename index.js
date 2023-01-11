@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 app = express();
-app.use(express.static("public"));
+app.use(express.static("public1"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 // What should happen when client tries to GET data FROM our server
